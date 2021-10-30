@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<link rel="stylesheet" href="./css/onsenui.css">
+	<link rel="stylesheet" href="./css/onsen-css-components.min.css">
+	<link rel="stylesheet" href="./css/custom.css">
+
+	<script src="./js/onsenui.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
+ 	<script src="./js/login_page.js"></script>
+	
+	</head>
+
+	<style> 
+	  .c-kod{
+	  background:none;
+	  border:1px solid blue;
+	  color:blue;
+	  font-size:1em;
+	  }  
+	  </style>
+
+  <body>
+	<ons-page style="display:none;z-index:9999;" id="lock-page">
+	  <div style="text-align: center; margin-top: 20%;">
+		<p>
+		  <ons-icon size="40px" spin icon="md-spinner"></ons-icon>
+		  
+		</p>
+		<p><b id="namakey"></b></p>
+		<p>
+		Menyiapkan perangkat
+		  </p>
+		
+	  </div>
+
+
+	</ons-page>
+	<ons-navigator id="myNavigator" page="homePage"></ons-navigator>
+	<template id="homePage">
+	  <ons-page>
+		<ons-toolbar>
+		  <div id="appname" class="center"></div>
+		  <div class="right" id="versi" style="font-size:10px;padding-right:5px;color:#333;"></div>
+		</ons-toolbar>
+		
+		<ons-tabbar id="myTabBar">
+		  <ons-tab page="login.html" label="Masuk" icon="ion-ios-cart, material:ion-ios-key" active="true"></ons-tab>
+		  <ons-tab page="daftar.html" label="Daftar" icon="ion-ios-cart, material:ion-ios-create" ></ons-tab>
+		  <ons-tab page="lupas.html" label="Lupa password" icon="ion-ios-cart, material:ion-ios-lock"></ons-tab>
+		  
+		</ons-tabbar>
+	
+	  </ons-page>
+	</template>
+
+	<template id="login.html">
+	 
+		
+	
+	  <ons-page id="myPage1Id">
+		<p style="padding-right:5px;text-align:right;font-size:10px;color:#888;" id="versi"></p>
+		<div style="text-align: center; margin-top: 30px;">
+		  <h4>Masuk</h4>
+		  <br>
+		  <p>
+			<ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+		  </p>
+		  <p>
+			<ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+		  </p>
+		  
+		  <p id="result">
+		  <ons-icon id="wait" style="display:none;" size="30px" spin icon="md-spinner"></ons-icon>
+		  </p>
+		  <p style="margin-top: 30px;">
+			<ons-button onclick="login()">Masuk</ons-button>
+		  </p>
+		</div>
+	  </ons-page>
+	</template>
+	<template id="daftar.html">
+	  <ons-page id="myPage2Id">
+		<p style="padding-right:5px;text-align:right;font-size:10px;color:#888;" id="versi"></p>
+		<div style="text-align: center; margin-top: 30px;">
+		  <h4>Daftar</h4>
+		  <br>
+		  <p>
+			<ons-input id="d-nama" modifier="underbar" placeholder="Nama lengkap" float></ons-input>
+		  </p>
+		  <p>
+			<ons-input id="d-email" modifier="underbar" placeholder="Email" float></ons-input>
+		  </p>
+		  <p>
+			<ons-input id="d-password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+		  </p>
+		  <p>
+			<ons-input id="d-password2" modifier="underbar" type="password" placeholder="Ulangi Password" float></ons-input>
+		  </p>
+		  <p>
+			  <ons-button class="c-kod captcha">h5g3</ons-button> &nbsp; &nbsp;  <ons-button onclick="captcha()"><ons-icon icon="md-refresh"></ons-icon></ons-button>
+			</p>
+		  <p>
+			<ons-input id="d-captcha" modifier="underbar" type="number" placeholder="Captcha Kode" float></ons-input>
+		  </p>
+		  <p id="d-result"></p>
+		  <p style="margin-top: 30px;">
+			<ons-button onclick="daftar()">Daftar</ons-button>
+		  </p>
+		</div>
+	  </ons-page>
+	</template>
+	<template id="lupas.html">
+	  <ons-page id="myPage3Id">
+		<p style="padding-right:5px;text-align:right;font-size:10px;color:#888;" id="versi"></p>
+		<div style="text-align: center; margin-top: 30px;">
+		  <h4>Lupa password</h4>
+		  <br>
+		  <p>
+			<ons-input id="l-email" modifier="underbar" placeholder="Email pemulihan" float></ons-input>
+		  </p>
+		  <p>
+			<ons-button class="c-kod captcha">h5g3</ons-button> &nbsp; &nbsp;  <ons-button onclick="captcha()"><ons-icon icon="md-refresh"></ons-icon></ons-button>
+		  </p>
+		  <p>
+			<ons-input id="l-captcha" modifier="underbar" type="number" placeholder="Captcha Kode" float></ons-input>
+		  </p>
+		  <p id="l-result"></p>
+		  <p style="margin-top: 30px;">
+			<ons-button onclick="lupas()">Resset password</ons-button>
+		  </p>
+		</div>
+	  </ons-page>
+	</template>
+	<ons-popover direction="down" id="popover">
+	  <div style="text-align: center;">
+		<p>This data was passed:</p>
+		<div id="myPopoverData"></div>
+		<ons-input id="myPopoverInput" placeholder="Input Data to be Passed Back"></ons-input>
+		<p><ons-button onclick="fn.hidePopover()">Close</ons-button></p>
+	  </div>
+	</ons-popover>
+  </body>
+</html>

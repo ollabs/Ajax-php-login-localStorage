@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<link rel="stylesheet" href="./css/onsenui.css">
+	<link rel="stylesheet" href="./css/onsen-css-components.min.css">
+	<link rel="stylesheet" href="./css/custom.css">
+
+	<script src="./js/onsenui.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
+ 	
+  </head>
+<script>
+  var serverweb = "http://localhost:8080/users/";
+	var config = {"appname":"Latian Login","versi":"1.0.0 beta"};
+
+$(document).ready(function(){
+ var ses = localStorage.getItem("session");
+ 
+  if(!ses){
+  window.location.href="./login.html";
+  }
+  var u = JSON.parse(ses);
+  $("#appname").html(config.appname);
+  $("#versi").html(config.versi);
+  $("#my-name").html(u.nama);
+  $("#my-email").html(u.email);
+  $("#data-ses").val(ses);
+  });
+  
+ var logout = function(){
+localStorage.removeItem("session");
+window.location.href="./login.html";
+}; 
+  </script>
+<style> 
+	  .c-kod{
+	  background:none;
+	  border:1px solid blue;
+	  color:blue;
+	  font-size:1em;
+	  }  
+</style>
+
+  <body>
+
+
+	  <ons-page id="page1">
+		<ons-toolbar>
+		  <div class="center">Dashboard</div>
+		</ons-toolbar>
+
+		<p style="padding-top:10px;text-align:center;">
+		  Selamat datang<br>
+		  <b id="my-name">Nina</b><br>
+		</p>
+		
+		<p>
+		  <textarea style="width:100%;height:80px;" id="data-ses"></textarea> <br>
+		<ons-button onclick="logout();">Logout</ons-button>
+		</p>
+		<p style="padding:5px;"><small id="versi">jii</small></p>
+	  </ons-page>
+
+
+	
+  </body>
+</html>
