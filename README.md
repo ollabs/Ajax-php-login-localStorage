@@ -10,8 +10,11 @@ Sript:
 -php.
 -mysql.
 
--Menggunakan "localStorage.setItem" untuk menyimpan data login
+
+<code>localStorage.setItem();</code>
+
+untuk menyimpan data login
 
 -Html css onsenui mobile app template
 
-<s>Bayar</s>
+
