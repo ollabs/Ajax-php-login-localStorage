@@ -13,3 +13,5 @@ Sript:
 -Menggunakan "localStorage.setItem" untuk menyimpan data login
 
 -Html css onsenui mobile app template
+
+<s>Bayar</s>
